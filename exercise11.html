@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"
+         href="http://code.jquery.com/ui/1.11.4/themes/Blitzer/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <title>exercise11</title>
+    <style>
+        #menu{width: 300px;}
+        #progbar{width: 300px;}
+        #slider{width: 500px;}
+        #my_tabs{height: 30em;
+                width: 1000px;}
+    </style>
+
+</head>
+<body>
+
+            <ul id="menu">
+                <li>My favorite sites
+                    <ul id="menu">
+                        <li>Youtube</li>
+                        <li>Wikipedia</li>
+                        <li>Amazon</li>
+                        <li>Facebook
+                            <ul id="menu">
+                                <li>Instagram</li>
+                                <li>WhatsApp</li>
+                                <li>Oculus VR</li>
+                            </ul>
+                        </li>
+                </li>
+                    </ul>
+            </ul>
+            <br><br>
+            <input id="popup_date">
+            <br><br><br>
+            <p id="progmsg">你今天已經過了：<span id="prognum"></span></p>
+            <div id="progbar"></div>
+            <br><br>
+            <span id="result"></span><br>
+            <div id="slider"></div>
+            <br><br>
+            <button id="but">Feeling Lucky</button>
+            <div id="myDialog" ><p id="goo"></p></div>
+            
+
+    <script>
+        var myArray=['Very Lucky!', 'Average','Unlucky....','Average','Average','Average','Average','Average','Average','Average'];
+        var now = new Date();
+        var midnight = new Date();
+        midnight.setHours(0, 0, 0, 0);
+        var pastSeconds = Math.floor((now - midnight) / 1000);
+        $('#menu').menu();
+        $('#popup_date').datepicker({ dateFormat: 'yy-mm-dd(D)'});
+        $('#progbar').progressbar({
+            change:function(){
+                value=0,
+                $('#prognum').text(
+                    $(this).progressbar("value").toFixed(2) + "%")
+            }
+        });
+        var timer=setInterval(
+        function(){
+             var barValue=$('#progbar').progressbar('value')+0.001;
+             $('#progbar').progressbar('value',barValue);
+             if(barValue>=pastSeconds/86400*100){
+                clearInterval(timer)};
+             },1);
+             $(document).ready(function() {
+                $("#slider").slider({
+                    min: 1,
+                    max: 100,
+                    change: function(event,ui) {
+                        var isOdd = ui.value % 2 !== 0;
+                        $("#result").text(isOdd ?  ui.value :ui.value-1);
+            }
+        });
+        });
+        $('#myDialog').dialog({autoOpen:false,
+                            draggable:false,
+                            modal:true,
+                            resizable:false});
+        $( "#but" ).click(function() {
+            $( "#myDialog" ).dialog( "open" );
+            var rand = Math.floor(Math.random()*myArray.length);
+            var rValue = myArray[rand];
+            $('#goo').text(rValue);
+        });
+
+    </script>
+
+</body>
+</html>

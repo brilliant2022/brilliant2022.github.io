@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"
+         href="http://code.jquery.com/ui/1.11.4/themes/Blitzer/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>
+        #my_tabs{height: 30em;
+                width: 1000px;}
+        #iframe1{border:none;}
+    </style>
+
+</head>
+<body>
+    <div id="my_tabs">
+        <ul>
+            <li><a href="#poem1"><span id="ex1">exercise1</span></a></li>
+            <li><a href="#poem2"><span>exercise2</span></a></li>
+            <li><a href="#poem3"><span>exercise3</span></a></li>
+            <li><a href="#poem4"><span>exercise11</span></a></li>
+        </ul>
+        <div id="poem1">
+            <iframe src="./exercise1.html"   sandbox="allow-popups allow-forms allow-same-origin allow-scripts" id="iframe1"  width="940" height="410"></iframe>
+        </div>
+        <div id="poem2">
+            <iframe src="./exercise2.html" sandbox="allow-popups allow-forms allow-same-origin allow-scripts" id="iframe1"  width="940" height="410"></iframe>
+        </div>
+        <div id="poem3">
+            <iframe src="./Exercise3.html" sandbox="allow-popups allow-forms allow-same-origin allow-scripts" id="iframe1"  width="940" height="410"></iframe>
+        </div>
+        <div id="poem4">
+            <iframe src="./exercise11.html" sandbox="allow-popups allow-forms allow-same-origin allow-scripts" id="iframe1"  width="940" height="420"></iframe>
+            
+        </div>
+    </div>
+    <script>
+        $('#my_tabs').tabs({heightStyle:'fill',show:'slideDown'});
+    </script>
+        
+
+</body>
+</html>
